@@ -1,0 +1,181 @@
+@import "reset";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
+
+//------VARIABLES-------
+
+$lighter-gray: #ECEFF1;
+$gray: #D5DCE0;
+$darker-gray: #4b4f51;
+$blue: #2196F3;
+$green: #2E7D32;
+$red: #F34E42;
+$white: #fff;
+
+//------MIXINS---------
+@mixin board-font {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: 900;
+    line-height: 42px;
+    font-size: 42px;
+    letter-spacing: 4px;
+    color: #000;;
+}
+
+@mixin column-font {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.1px;
+    color: $white;
+}
+
+@mixin card-font {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 50px;
+    color: $darker-gray;
+}
+
+@mixin btn {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 2px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    color: $white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+@mixin btn-create {
+    @include btn;
+    line-height: 24px;
+    background-color: $green;
+}
+
+@mixin btn-delete {
+    @include btn;
+    background-color: $red;
+}
+
+@mixin btn-hover {
+    transform: scale(1.05);
+}
+
+//------MAIN STYLES---------
+
+
+
+.board {
+    width: 100%;
+    height: 100%;
+    background-color: $gray;
+    text-align: center;
+
+    h1 {
+        @include board-font;
+        display: block;
+        padding: 40px 0 10px 0;
+    }
+
+    .create-column {
+        @include btn-create;
+        
+        &:hover {
+            @include btn-hover;
+        }
+    }
+
+    .column-container {
+        position: relative;
+        left: 0;
+        min-width: 100%;
+        min-height: calc(100vh - 156px);
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-flow: nowrap;
+        margin-top: 30px;
+        overflow-x: auto;
+
+        .column {
+            position: relative;
+            min-width: 25%;
+            height: auto;
+            background-color: $gray;
+            padding: 15px;
+
+            .column-title {
+                @include column-font;
+                display: block;
+                padding: 10px;
+                text-align: center;
+                background-color: $blue;
+                margin-bottom: 10px;
+            }
+
+            .btn-delete {
+                @include btn-delete;
+                float: right;  
+                
+                &:hover {
+                    @include btn-hover;
+                }
+            }
+
+            .add-card {
+                @include btn-create;
+
+                &:hover {
+                    @include btn-hover;
+                }
+            }
+
+            .column-card-list {
+                display: block;
+                width: 100%;
+                min-height: 70px;
+                list-style-type: none;
+                margin-top: 20px;
+
+                .card {
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    min-height: 50px;
+                    box-sizing: border-box;
+                    background-color: $white;
+                    //border-radius: 5px;
+                    border-bottom: 10px solid $lighter-gray;
+                    border-left: 2px solid blueviolet;
+                    text-align: center;
+                    cursor: grab;
+
+                    &:active {
+                        cursor: grabbing;
+                        background-color: rgba($white, .7);
+                    }
+                }
+
+                .btn-delete {
+                    margin-top: 10px;
+                    
+                }
+
+                .card-description {
+                    @include card-font;
+                }
+
+                .card-placeholder {
+                    background-color: red;
+                }
+            }
+        }
+    }
+}

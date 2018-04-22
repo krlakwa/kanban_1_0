@@ -91,11 +91,11 @@ $(function() {
     function initSortable() {
         $('.column-card-list').sortable({
             connectWith: '.column-card-list',
-            placeholder: '.card-placeholder'
+            placeholder: 'card-placeholder'
         }).disableSelection();
     }
 
-    $('create-column').on('click', function(){
+    $('.create-column').on('click', function(){
         var name = prompt('Enter a column name');
         var column = new Column(name);
         
@@ -107,16 +107,16 @@ $(function() {
     var doingColumn = new Column('Doing');
     var doneColumn = new Column('Done');
 
-    // DODAJE KOLUMNY DO TABLICY
+
     board.addColumn(todoColumn);
     board.addColumn(doingColumn);
-    board.doneColumn(doneColumn);
+    board.addColumn(doneColumn);
 
-    // TWORZY KARTY
+
     var card1 = new Card('New task');
     var card2 = new Card('Create kanban boards');
 
-    // DODAJE KARTY DO KOLUMN
+
     todoColumn.addCard(card1);
     doingColumn.addCard(card2);
 })
