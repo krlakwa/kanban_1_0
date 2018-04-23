@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     function randomString() {
         var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -22,21 +22,30 @@ $(function() {
             var $columnCardList = $('<ul>').addClass('column-card-list');
             var $columnDelete = $('<button>').addClass('btn-delete').text('x');
             var $columnAddCard = $('<button>').addClass('add-card').text('Add a card');
+            var $columnSetCardName = $('<form>').addClass('set-card-name').hide();
 
-            //removes column
+            $columnSetCardName.append('<input type="text" class="card-name" id="js-card-name">');
+            $columnSetCardName.append('<input type="button" class="card-name-btn" value="Add">');
+
             $columnDelete.on('click', function() {
                 self.removeColumn();
             });
 
-            //create a card after clicking on a button
             $columnAddCard.on('click', function() {
-                self.addCard(new Card(prompt("Enter the name of the card")));
+                $columnSetCardName.slideToggle();
+
+                $('.card-name-btn').on('click', function() {
+                    var cardName = document.getElementById('js-card-name').value;
+                    self.addCard(new Card(cardName));
+                    $columnSetCardName.slideToggle();
+                });
             });
 
             $column.append($columnTitle)
                 .append($columnTitle)
                 .append($columnDelete)
                 .append($columnAddCard)
+                .append($columnSetCardName)
                 .append($columnCardList);
             return $column;
         }
@@ -95,14 +104,20 @@ $(function() {
         }).disableSelection();
     }
 
-    $('.create-column').on('click', function(){
-        var name = prompt('Enter a column name');
-        var column = new Column(name);
-        
-        board.addColumn(column);
+    $('.set-column-name').hide();
+
+    $('.create-column').on('click', function() {
+        $('.set-column-name').slideToggle();
     });
 
-    // TWORZY KOLUMNY W TABLICY
+    $('.column-name-btn').on('click', function() {
+        var name = document.getElementById('column-name').value;
+        var column = new Column(name);
+
+        board.addColumn(column);
+        $('.set-column-name').slideToggle();
+    })
+
     var todoColumn = new Column('To do');
     var doingColumn = new Column('Doing');
     var doneColumn = new Column('Done');

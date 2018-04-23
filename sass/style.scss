@@ -67,9 +67,25 @@ $white: #fff;
     transform: scale(1.05);
 }
 
+@mixin set-name {
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: $darker-gray;
+    border: 1px solid $gray;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+@mixin form {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
 //------MAIN STYLES---------
-
-
 
 .board {
     width: 100%;
@@ -88,6 +104,18 @@ $white: #fff;
         
         &:hover {
             @include btn-hover;
+        }
+    }
+
+    .set-column-name {
+        
+        .name {
+            @include set-name;
+        }
+
+        input.column-name-btn {
+            @include btn;
+            background-color: $blue;
         }
     }
 
@@ -134,6 +162,19 @@ $white: #fff;
 
                 &:hover {
                     @include btn-hover;
+                }
+            }
+
+            .set-card-name {
+                @include form;
+
+                .card-name {
+                @include set-name;
+                }
+
+                .card-name-btn {
+                @include btn;
+                background-color: $blue;
                 }
             }
 

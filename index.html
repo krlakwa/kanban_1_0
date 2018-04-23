@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban ver. 1.0</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-
 <body>
-
     <div id="board" class="board">
         <h1>Kanban board</h1>
         <button class="create-column">Add a column</button>
+        <form class="set-column-name">
+            <input type="text" id="column-name" class="name">
+            <input type="button" class="column-name-btn" value="Add">
+        </form>
         <div class="column-container"></div>
     </div>
-    
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </body>
-
 </html>
