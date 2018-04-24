@@ -237,6 +237,7 @@ q:before, q:after {
   min-height: 50px;
   box-sizing: border-box;
   background-color: #fff;
+  border-radius: 5px;
   border-bottom: 10px solid #ECEFF1;
   border-left: 2px solid blueviolet;
   text-align: center;

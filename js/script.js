@@ -24,20 +24,22 @@ $(function () {
             var $columnAddCard = $('<button>').addClass('add-card').text('Add a card');
             var $columnSetCardName = $('<form>').addClass('set-card-name').hide();
 
-            $columnSetCardName.append('<input type="text" class="card-name" id="js-card-name">');
-            $columnSetCardName.append('<input type="button" class="card-name-btn" value="Add">');
+            $columnSetCardName.append('<input type="text" class="card-name" id="card-name-' + self.id + '">');
+            $columnSetCardName.append('<input type="button" class="card-name-btn" id="card-name-btn-' + self.id + '" value="Add">');
 
             $columnDelete.on('click', function() {
                 self.removeColumn();
             });
 
             $columnAddCard.on('click', function() {
+                var cardNameBtn = $('#card-name-btn-' + self.id);
                 $columnSetCardName.slideToggle();
 
-                $('.card-name-btn').on('click', function() {
-                    var cardName = document.getElementById('js-card-name').value;
+                cardNameBtn.on('click', function() {
+                    var cardName = $('#card-name-' + self.id).val();
                     self.addCard(new Card(cardName));
                     $columnSetCardName.slideToggle();
+                    this.reset();
                 });
             });
 
